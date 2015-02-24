@@ -25,8 +25,6 @@ int main(int argc, char const *argv[]){
 	char cadena[100];
 	char temp1[100];
 	char temp2[100];
-	char* tok1;
-	char* tok2;
 	
 	int n_a[a];
 	int n_b[b];
