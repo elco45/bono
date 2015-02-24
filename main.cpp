@@ -21,7 +21,6 @@ int main(int argc, char const *argv[]){
 	cin>>b;
 	char** col_a=new char*[a];
 	char** col_b=new char*[b];
-	char** r_a;
 	
 	char cadena[100];
 	char temp1[100];
@@ -58,7 +57,6 @@ int main(int argc, char const *argv[]){
 		t=b;
 		t1=b;
 	}	
-	r_a=new char*[t1];
 	
 	int resp[t1][t1];
 	for (int i = 0; i < t1; i++){
@@ -72,13 +70,6 @@ int main(int argc, char const *argv[]){
 		resp[i][c]=ra;
 		c++;
 		resp[i][c]=rb;
-
-		strcpy(temp1,col_a[ra-1]);
-		strcpy(temp2,col_b[rb-1]);
-		strcat(temp1,"-");
-		strcat(temp1,temp2);
-		r_a[i]=new char[strlen(temp1)+1];
-		strcpy(r_a[i],temp1);
 	}
 	if (a>b){
 		t=a;
@@ -125,8 +116,16 @@ int main(int argc, char const *argv[]){
 			}
 		}
 	}	
-	cout<<"Promedio: "<<d*correcto<<endl;
-		
+	cout<<"Promedio: "<<d*correcto<<"\n"<<endl;
+	
+	//liberar memoria
+	for (int i = 0; i < a; i++){
+		delete[] col_a[i];
+	}
+
+	for (int i = 0; i < b; i++){
+		delete[] col_b[i];
+	}
 	
 	return 0;
 }
