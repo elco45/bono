@@ -10,10 +10,10 @@ void swapN(int*,int*);
 int main(int argc, char const *argv[]){
 	srand(time(0));
 	int a,b;
-	int r,t=1,t1,ra,rb;
+	int r,t=1,t1=0,ra,rb;
 	int ran;
 	int d=0;
-	int c=0;
+	int c=0,acum=0;
 	int correcto=0;
 	cout<<"Columna A: ";
 	cin>>a;
@@ -47,34 +47,32 @@ int main(int argc, char const *argv[]){
 	}
 
 	//la pauta
-	cout<<"\nKey"<<endl;
-	if (a>b){
-		t=a;
-		t1=a;
-	}else{
-		t=b;
-		t1=b;
-	}	
+	cout<<"\nKey"<<endl;	
 	
-	int resp[t1][t1];
-	for (int i = 0; i < t1; i++){
-		c=0;
-		cout<<"Cantidad de terminos que puede emparejar: "<<t<<endl;
-		t--;
+	int** resp=new int*[2];
+	do{
 		cout<<"col A: ";
 		cin>>ra;
 		cout<<"col B: ";
 		cin>>rb;
-		resp[i][c]=ra;
-		c++;
-		resp[i][c]=rb;
-	}
-	if (a>b){
-		t=a;
-	}else{
-		t=b;
-	}	
-	d=100/t;
+		resp[acum]=new int[2];
+		resp[acum][0]=ra;
+		cout<<resp[acum][0]<<endl;
+		cout<<"wtf"<<endl;
+		resp[acum][1]=rb;
+		cout<<resp[acum][1]<<endl;
+		acum++;
+		t1++;
+		cout<<"Continuar? [1-Si/2-No]";
+		cin>>t;
+		if (t==1){
+			continue;
+		}else{
+			break;
+		}
+	}while(true);
+	resp[acum]=NULL;
+	d=100/t1;
 
 	//shuffle los arrays
 	for (int i = a-1; i >0; i--){
@@ -99,30 +97,35 @@ int main(int argc, char const *argv[]){
 
 	//preguntar por las respuestas
 	cout<<"\nRespuestas"<<endl;
-	
-	for (int x = 0; x < t1; x++){
-		cout<<"Oportunidades: "<<t<<endl;
-		t--;
+	do{
 		cout<<"Col. A: ";
 		cin>>ra;
 		cout<<"Col. B: ";
 		cin>>rb;
 		for (int i = 0; i < t1; i++){
-			c=0;
-			if (resp[i][c]==n_a[ra-1]&&resp[i][c+1]==n_b[rb-1]){
+			if (resp[i][0]==n_a[ra-1]&&resp[i][1]==n_b[rb-1]){
 				correcto++;
 			}
 		}
-	}	
+		cout<<"Continuar? [1-Si/2-No]";
+		cin>>t;
+		if (t==1){
+			continue;
+		}else{
+			break;
+		}
+	}while(true);
 	cout<<"Promedio: "<<d*correcto<<"\n"<<endl;
 	
 	//liberar memoria
 	for (int i = 0; i < a; i++){
 		delete[] col_a[i];
 	}
-
 	for (int i = 0; i < b; i++){
 		delete[] col_b[i];
+	}
+	for (int i = 0; i < t1+1; ++i){
+		delete[] resp[i];
 	}
 	
 	return 0;
