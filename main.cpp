@@ -10,7 +10,7 @@ void swapN(int*,int*);
 int main(int argc, char const *argv[]){
 	srand(time(0));
 	int a,b;
-	int r,t=1,t1=0,ra,rb;
+	int t=1,t1=0,ra,rb;
 	int ran;
 	int d=0;
 	int c=0,acum=0;
@@ -57,10 +57,7 @@ int main(int argc, char const *argv[]){
 		cin>>rb;
 		resp[acum]=new int[2];
 		resp[acum][0]=ra;
-		cout<<resp[acum][0]<<endl;
-		cout<<"wtf"<<endl;
 		resp[acum][1]=rb;
-		cout<<resp[acum][1]<<endl;
 		acum++;
 		t1++;
 		cout<<"Continuar? [1-Si/2-No]";
@@ -115,7 +112,7 @@ int main(int argc, char const *argv[]){
 			break;
 		}
 	}while(true);
-	cout<<"Promedio: "<<d*correcto<<"\n"<<endl;
+	cout<<"\nPromedio: "<<d*correcto<<"\n"<<endl;
 	
 	//liberar memoria
 	for (int i = 0; i < a; i++){
